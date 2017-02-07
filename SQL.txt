@@ -44,3 +44,7 @@ UPDATE `articles` SET `views` = "views + 1" WHERE `id` = 1;
 DELETE FROM `articles` WHERE `id` = "4"
 //Удалить несколько записей
 DELETE FROM `articles` WHERE `id` = "5" OR `id` = "6"
+
+
+
+
