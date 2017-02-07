@@ -1,89 +1,47 @@
 <?php
-// конкатинация - обьединние строк
+//SQL
+//CRUD, CREATE,READ, UPDATE, DELETE
 
-$name = "Vasiliy";
-$surname = "Oleinik<br><br/>";
-
-echo $name . ` ` . $surname;
-
-//For
-for ($i = 1; $i <=10; $i++){
-	echo $i;
-
-	if( $i % 2 == 0){
-		echo ' - четное число';
-	} else {
-		echo " - не четное число";
-	}
-	echo "<br/>";
-}
-echo "<br/>";
-echo "<br/>";
-
-//While
-$hello = 1;
-while( $hello <= 10){
-	echo 'Hello' .$hello.'<br/>';
-	$hello++;
-}
-echo "<br/>";
-echo "<br/>";
-
-//Foreach
-$name = array (
-	'Tapok',
-	'Tapok B',
-	'Tort',
-	'Maus'
-	);
-foreach ($name as $count){
-	echo $count. '<br/>';
-}
-echo "<br/>";
-echo "<br/>";
-
-$numbers = array (2,4,8,16,32);
-foreach ($numbers as $calk){
-	echo 'Куб числа ' .$calk. ':'. ($calk * $calk). '<br/>';
-}
-
-echo "<br/>";
-echo "<br/>";
-echo "<br/>";
-echo "<br/>";
+//Create
+// создание нового раздела
+INSERT INTO `articles_categories`(`имя базы данных` ) (`title`(`раздел`)) VALUES ("SQL"("значение"));
+// создание новой статьи
+//NOW() - текущая дата
+INSERT INTO `articles` (`title`, `text`, `categories_id`, `pabdate`) VALUES ("SQL-запросы", "Первый SQL запрос", "5", NOW());
 
 
-//Function
-function myfunction(){
-	echo 'My first function php';
-}
-myfunction();
+//Read
+//SELECT * - * выбрать все поля
+//SELECT `title` - выбрать поле `title`
+SELECT * FROM `articles_categories`
+//Вернуть только эту запись
+SELECT * FROM `articles` WHERE `title` = "заголовок статьи"
+//Поиск по id
+SELECT * FROM `articles` WHERE `id` = "1"
+//Поиск по просмотрам
+SELECT * FROM `articles` WHERE `views` < 100
+//ORDER BY (``) = сортировка по
+SELECT * FROM `articles` ORDER BY (`views`)
+//ORDER BY `` DESC = сортировка по популярности
+SELECT * FROM `articles` ORDER BY `views` DESC
+//ORDER BY `` DESC limit n = вывести N статей 
+SELECT * FROM `articles` ORDER BY `views` DESC limit 10
+//ORDER BY `` DESC limit offset,views = offset - пропусти, views - покажи столько 
+// Используется для пагинации
+SELECT * FROM `articles` ORDER BY `views` DESC limit 2,10
 
-echo "<br/>";
-echo "<br/>";
 
-function get_bigger($a, $b){
-	if ($a > $b){
-		echo 'Большее число:' . $a . '<br/>';
-	} else  {
-		echo 'Большее число:' . $b . '<br/>';
-	}
-}
-get_bigger(1, 2);
-get_bigger(66, 32);
-get_bigger(8, 777);
+//Update
+//Изменить заголовок 
+UPDATE `articles` SET `title` = "Hey, Hey,Hey" WHERE `id` = 1;
+				таблица       раздел     новое значение         айди
+//Изменить количество просмотров
+UPDATE `articles` SET `views` = "69" WHERE `id` = 1;
+//Изменить количество просмотров
+UPDATE `articles` SET `views` = "views + 1" WHERE `id` = 1;
 
-echo "<br/>";
-echo "<br/>";
-echo "<br/>";
-echo "<br/>";
-
-//abs, round, ceil, floor, raind, ,min,max
-
-echo 'ABS: '.abs(-3000). '<br/>'; //абсолютное число (модуль)
-echo 'ROUND: '.round(50.55). '<br/>'; //округление по общим правилам
-echo 'CEIL: '.ceil(50.55). '<br/>'; //округляет в большую сторону
-echo 'FLOOR: '.floor(50.55). '<br/>'; //округляет в меньшую сторону
-echo 'RAND: '.rand(0, 100). '<br/>'; //генерирует случайное число
-echo 'MIN: '.min(5,8,33,64636). '<br/>'; //возвращает минимальное число
-echo 'MAX: '.max(5,8,33,64636). '<br/>'; //возвращает максимальное число
+//Delete
+//Удалить запись
+DELETE FROM `articles` WHERE `id` = "4"
+//Удалить несколько записей
+DELETE FROM `articles` WHERE `id` = "5" OR `id` = "6"
